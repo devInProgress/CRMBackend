@@ -3,16 +3,11 @@ import * as Controller from "../controllers/crmController";
 
 const routes = (app) => {
   app.route('/contact')
-    .get((req, res, next) => {
-      console.log(`request url ${req.originalUrl}`);
-      console.log(`request method ${req.method}`);
-      next();
-    }, (req, res, next) => {
-      res.send('GET request served');
-    })
+    .get(Controller.getContacts)
     .post(Controller.addNewContact);
 
   app.route('/contact/:contactId')
+    .get(Controller.getContactById)
     .put((req, res) => res.send('PUT request served'))
     .delete((req, res) => res.send('DELETE request served'));
 }
