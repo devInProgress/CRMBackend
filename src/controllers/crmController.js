@@ -37,3 +37,25 @@ export const getContactById = async (req, res) => {
     res.send(error);
   }
 }
+
+export const updateContactById = async (req, res) => {
+  try{
+    const updatedContact = await Contacts.findOneAndUpdate({ _id: req.params.contactId }, req.body, { new: true });
+    res.json(updatedContact);
+  }
+  catch (error) {
+    console.error(error);
+    res.send(error);
+  }
+}
+
+export const deleteContactById = async (req, res) => {
+  try{
+    const deletedContact = await Contacts.deleteOne({ _id: req.params.contactId });
+    if (deletedContact) res.json('Contact Deleted Successfully!');
+  }
+  catch (error) {
+    console.error(error);
+    res.send(error);
+  }
+}
