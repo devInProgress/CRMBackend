@@ -14,4 +14,6 @@ app.use(bodyParser.json());
 
 routes(app);
 
+app.use(express.static('public'));
+
 app.listen(PORT, () => console.log(`The backend server has started at ${PORT}`));
